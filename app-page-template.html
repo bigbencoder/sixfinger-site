@@ -54,12 +54,18 @@
 <h1>{{APP}}</h1>
 <p class="sub">{{ONE_LINE}}</p>
 
-<!-- DOWNLOAD_URL must be the real release artifact, supplied by clarus.
+<!-- {{ARCH}}: leave EMPTY unless the app's signed appcast declares an architecture.
+     This slot used to read "Apple silicon and Intel" as boilerplate. Nobody checked it.
+     Three of the four appcasts declare <sparkle:hardwareRequirements>arm64, so three
+     pages sent Intel users to a download that cannot run. Same shape as the macOS-14
+     footer bug: an unverified GENERAL claim sitting next to per-app data that WAS
+     verified. Do not put a fact in a template unless it is true for every instance.
+     DOWNLOAD_URL must be the real release artifact, supplied by clarus.
      Point it at the existing <app>-releases GitHub Pages path or the GitHub
      release asset -- whichever Sparkle already uses, so the site and the
      auto-updater cannot drift apart. Do not invent a version string here. -->
 <a class="dl" href="{{DOWNLOAD_URL}}">Download {{APP}}</a>
-<p class="meta">{{VERSION}} &middot; {{SIZE}} &middot; macOS {{MIN_OS}}+ &middot; Apple silicon and Intel</p>
+<p class="meta">{{VERSION}} &middot; {{SIZE}} &middot; macOS {{MIN_OS}}+{{ARCH}}</p>
 
 <h2>What it does</h2>
 <ul>
